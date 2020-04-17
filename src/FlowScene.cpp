@@ -152,11 +152,11 @@ restoreConnection(QJsonObject const &connectionJson)
     {
       QJsonObject converterJson = converterVal.toObject();
 
-      NodeDataType inType { converterJson["in"].toObject()["id"].toString(),
-                            converterJson["in"].toObject()["name"].toString() };
+      NodeDataType inType { QLatin1String(converterJson["in"].toObject()["id"].toString().toLatin1()),
+                            QLatin1String(converterJson["in"].toObject()["name"].toString().toLatin1()) };
 
-      NodeDataType outType { converterJson["out"].toObject()["id"].toString(),
-                             converterJson["out"].toObject()["name"].toString() };
+      NodeDataType outType { QLatin1String(converterJson["out"].toObject()["id"].toString().toLatin1()),
+                             QLatin1String(converterJson["out"].toObject()["name"].toString().toLatin1()) };
 
       auto converter  =
         registry().getTypeConverter(outType, inType);
