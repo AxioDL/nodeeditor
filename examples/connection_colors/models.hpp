@@ -22,8 +22,8 @@ public:
   NodeDataType
   type() const override
   {
-    return NodeDataType {"MyNodeData",
-                         "My Node Data"};
+    return NodeDataType {QLatin1String("MyNodeData"),
+                         QLatin1String("My Node Data")};
   }
 };
 
@@ -34,8 +34,8 @@ public:
   NodeDataType
   type() const override
   {
-    return NodeDataType {"SimpleData",
-                         "Simple Data"};
+    return NodeDataType {QLatin1String("SimpleData"),
+                         QLatin1String("Simple Data")};
   }
 };
 

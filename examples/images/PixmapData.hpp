@@ -23,7 +23,7 @@ public:
   type() const override
   {
     //       id      name
-    return {"pixmap", "P"};
+    return {QLatin1String("pixmap"), QLatin1String("P")};
   }
 
   QPixmap

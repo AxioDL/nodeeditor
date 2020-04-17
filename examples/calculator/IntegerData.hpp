@@ -21,8 +21,8 @@ public:
 
   NodeDataType type() const override
   {
-    return NodeDataType {"integer",
-                         "Integer"};
+    return NodeDataType {QLatin1String("integer"),
+                         QLatin1String("Integer")};
   }
 
   int number() const

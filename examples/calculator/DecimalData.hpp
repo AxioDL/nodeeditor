@@ -21,8 +21,8 @@ public:
 
   NodeDataType type() const override
   {
-    return NodeDataType {"decimal",
-                         "Decimal"};
+    return NodeDataType {QLatin1String("decimal"),
+                         QLatin1String("Decimal")};
   }
 
   double number() const

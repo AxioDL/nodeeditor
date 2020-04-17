@@ -3,12 +3,13 @@
 #include <QtCore/QString>
 
 #include "Export.hpp"
-
+#if 0
 struct ConstLatin1String : public QLatin1String
 {
   constexpr explicit ConstLatin1String(const char* const s) :
       QLatin1String(s, static_cast<int>(std::char_traits<char>::length(s))) {}
 };
+#endif
 
 namespace QtNodes
 {
