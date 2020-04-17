@@ -21,7 +21,7 @@ struct NodeDataType
 
 inline bool operator==(const NodeDataType& lhs, const NodeDataType& rhs)
 {
-  return lhs.id == rhs.id && lhs.name == rhs.name;
+  return lhs.id == rhs.id;
 }
 
 /// Class represents data transferred between nodes.

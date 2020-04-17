@@ -99,7 +99,11 @@ public:
   virtual
   void
   setInData(std::shared_ptr<NodeData> nodeData,
-            PortIndex port) = 0;
+            PortIndex port)
+  {
+      Q_UNUSED(nodeData);
+      Q_UNUSED(port);
+  };
 
   virtual
   std::shared_ptr<NodeData>
@@ -107,7 +111,7 @@ public:
 
   virtual
   QWidget *
-  embeddedWidget() = 0;
+  embeddedWidget() { return nullptr; };
 
   virtual
   bool
@@ -161,6 +165,8 @@ Q_SIGNALS:
   computingFinished();
 
   void embeddedWidgetSizeUpdated();
+
+  void portChanged(PortType type, PortIndex index);
 
 private:
 

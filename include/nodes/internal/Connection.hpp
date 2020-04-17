@@ -137,6 +137,9 @@ Q_SIGNALS:
   void
   connectionMadeIncomplete(Connection const&) const;
 
+  void
+  connectionBroke(Connection const&) const;
+
 private:
 
   QUuid _uid;

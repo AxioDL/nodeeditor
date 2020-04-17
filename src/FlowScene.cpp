@@ -50,6 +50,7 @@ FlowScene(std::shared_ptr<DataModelRegistry> registry,
   connect(this, &FlowScene::connectionCreated, this, &FlowScene::setupConnectionSignals);
   connect(this, &FlowScene::connectionCreated, this, &FlowScene::sendConnectionCreatedToNodes);
   connect(this, &FlowScene::connectionDeleted, this, &FlowScene::sendConnectionDeletedToNodes);
+  connect(this, &FlowScene::connectionBroke, this, &FlowScene::deleteConnection);
 }
 
 FlowScene::
@@ -182,7 +183,7 @@ restoreConnection(QJsonObject const &connectionJson)
 
 void
 FlowScene::
-deleteConnection(Connection& connection)
+deleteConnection(Connection const& connection)
 {
   auto it = _connections.find(connection.id());
   if (it != _connections.end()) {
@@ -590,6 +591,12 @@ setupConnectionSignals(Connection const& c)
           &Connection::connectionMadeIncomplete,
           this,
           &FlowScene::connectionDeleted,
+          Qt::UniqueConnection);
+
+  connect(&c,
+          &Connection::connectionBroke,
+          this,
+          &FlowScene::connectionBroke,
           Qt::UniqueConnection);
 }
 

@@ -39,6 +39,9 @@ Node(std::unique_ptr<NodeDataModel> && dataModel)
 
   connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated,
           this, &Node::onNodeSizeUpdated );
+
+  connect(_nodeDataModel.get(), &NodeDataModel::portChanged,
+          this, &Node::onPortChanged);
 }
 
 
@@ -230,4 +233,15 @@ onNodeSizeUpdated()
             }
         }
     }
+}
+
+void
+Node::
+onPortChanged(PortType type, PortIndex index)
+{
+  auto connections =
+      _nodeState.connections(type, index);
+
+  for (auto const & c : connections)
+    c.second->connectionBroke(*c.second);
 }
