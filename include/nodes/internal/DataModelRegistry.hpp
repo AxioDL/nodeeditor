@@ -53,13 +53,13 @@ public:
 
   template<typename ModelType>
   void registerModel(RegistryItemCreator creator,
-                     QString const &category = "Nodes")
+                     QString const &category = QStringLiteral("Nodes"))
   {
     registerModelImpl<ModelType>(std::move(creator), category);
   }
 
   template<typename ModelType>
-  void registerModel(QString const &category = "Nodes")
+  void registerModel(QString const &category = QStringLiteral("Nodes"))
   {
     RegistryItemCreator creator = [](){ return std::make_unique<ModelType>(); };
     registerModelImpl<ModelType>(std::move(creator), category);

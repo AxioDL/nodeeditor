@@ -119,7 +119,7 @@ public:
 
   virtual
   QString
-  validationMessage() const { return QString(""); }
+  validationMessage() const { return QStringLiteral(""); }
 
   virtual
   NodePainterDelegate* painterDelegate() const { return nullptr; }
