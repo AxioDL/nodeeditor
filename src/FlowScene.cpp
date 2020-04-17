@@ -218,8 +218,8 @@ restoreNode(QJsonObject const& nodeJson)
   auto dataModel = registry().create(modelName);
 
   if (!dataModel)
-    throw std::logic_error(std::string("No registered model with name ") +
-                           modelName.toLocal8Bit().data());
+    qFatal("%s", (std::string("No registered model with name ") +
+                           modelName.toLocal8Bit().data()).c_str());
 
   auto node = detail::make_unique<Node>(std::move(dataModel));
   auto ngo  = detail::make_unique<NodeGraphicsObject>(*this, *node);
@@ -439,7 +439,7 @@ selectedNodes() const
 
   for (QGraphicsItem* item : graphicsItems)
   {
-    auto ngo = qgraphicsitem_cast<NodeGraphicsObject*>(item);
+    auto* ngo = qgraphicsitem_cast<NodeGraphicsObject*>(item);
 
     if (ngo != nullptr)
     {
@@ -647,7 +647,7 @@ locateNodeAt(QPointF scenePoint, FlowScene &scene,
                std::back_inserter(filteredItems),
                [] (QGraphicsItem * item)
     {
-      return (dynamic_cast<NodeGraphicsObject*>(item) != nullptr);
+      return qgraphicsitem_cast<NodeGraphicsObject*>(item) != nullptr;
     });
 
   Node* resultNode = nullptr;
@@ -655,7 +655,7 @@ locateNodeAt(QPointF scenePoint, FlowScene &scene,
   if (!filteredItems.empty())
   {
     QGraphicsItem* graphicsItem = filteredItems.front();
-    auto ngo = dynamic_cast<NodeGraphicsObject*>(graphicsItem);
+    auto* ngo = qgraphicsitem_cast<NodeGraphicsObject*>(graphicsItem);
 
     resultNode = &ngo->node();
   }

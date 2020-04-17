@@ -254,7 +254,7 @@ widgetPosition() const
                       (captionHeight() + _height - validationHeight() - _spacing - w->height()) / 2.0);
       }
 
-      return QPointF(_spacing + portWidth(PortType::In), 
+      return QPointF(_spacing + portWidth(PortType::In),
                     (captionHeight() + _height - w->height()) / 2.0);
     }
   }
@@ -321,11 +321,11 @@ validationWidth() const
 
 QPointF
 NodeGeometry::
-calculateNodePositionBetweenNodePorts(PortIndex targetPortIndex, PortType targetPort, Node* targetNode, 
-                                      PortIndex sourcePortIndex, PortType sourcePort, Node* sourceNode, 
+calculateNodePositionBetweenNodePorts(PortIndex targetPortIndex, PortType targetPort, Node* targetNode,
+                                      PortIndex sourcePortIndex, PortType sourcePort, Node* sourceNode,
                                       Node& newNode)
 {
-  //Calculating the nodes position in the scene. It'll be positioned half way between the two ports that it "connects". 
+  //Calculating the nodes position in the scene. It'll be positioned half way between the two ports that it "connects".
   //The first line calculates the halfway point between the ports (node position + port position on the node for both nodes averaged).
   //The second line offsets this coordinate with the size of the new node, so that the new nodes center falls on the originally
   //calculated coordinate, instead of it's upper left corner.
@@ -356,7 +356,7 @@ portWidth(PortType portType) const
       name = _dataModel->dataType(portType, i).name;
     }
 
-    width = std::max(unsigned(_fontMetrics.width(name)),
+    width = std::max(unsigned(_fontMetrics.horizontalAdvance(name)),
                      width);
   }
 
